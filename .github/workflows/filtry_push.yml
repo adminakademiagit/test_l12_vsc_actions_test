@@ -1,0 +1,21 @@
+name: filtry_push
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+  workflow_dispatch:
+
+jobs:
+  zmiana_dokumentacji:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Co uruchomiło przepływ
+        run: |
+          echo "Zdarzenie: $ZDARZENIE"
+          echo "Gałąź lub znacznik: $REF"
+        env:
+          ZDARZENIE: ${{ github.event_name }}
+          REF: ${{ github.ref_name }}
