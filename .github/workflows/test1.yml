@@ -12,31 +12,22 @@ jobs:
   # This workflow contains a single job called "build"
   moje_pierwsze_zadanie:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: debian13_runner1
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Sprawdzamy wersję Python
-        run: python -V
+        run: python3 -V
 
       - name: Wyświetl aktualny katalog roboczy
         run: pwd
 
       - name: Wyświetl listę plików
-        run: ls -a
+        run: ls -la
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
       - name: Wyświetl listę plików po checkout
-        run: ls -a
+        run: ls -la
 
-      - name: Setup Python
-        uses: actions/setup-python@v7.0.0
-        with:
-          # Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset.
-          python-version: '3.15'
-          allow-prereleases: true
-
-      - name: Sprawdzamy wersję Python po instalacji
-        run: python -V
