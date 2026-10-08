@@ -1,0 +1,26 @@
+name: Zmienne środowisk
+
+on:
+  workflow_dispatch:
+    inputs:
+      srodowisko:
+        description: 'Środowisko docelowe'
+        type: choice
+        options:
+          - Testowe
+          - Produkcyjne
+        default: Testowe
+
+jobs:
+  bez_srodowiska:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Adres serwera bez środowiska
+        run: echo "Bez środowiska adres serwera to ${{ vars.ADRES_SERWERA }}"
+
+  wdrozenie:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.srodowisko }}
+    steps:
+      - name: Adres serwera w środowisku
+        run: echo "Środowisko ${{ inputs.srodowisko }} – adres serwera to ${{ vars.ADRES_SERWERA }}"
